@@ -1,3 +1,11 @@
 // 既定の設定とユーザー設定を上書きするには、このファイル内に設定を挿入します
 {
+    "python.unitTest.unittestArgs": [
+        "-v",
+        "-s",
+        ".",
+        "-p",
+        "*_test.py"
+    ],
+    "python.unitTest.unittestEnabled": true
 }
