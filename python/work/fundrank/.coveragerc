@@ -1,0 +1,3 @@
+[run]
+source = fundrank
+omit = fundrank/test*

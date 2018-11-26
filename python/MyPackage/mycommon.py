@@ -30,9 +30,9 @@ class Runner:
         return mylist[0:3]
 
     def replacechar(self,thestr):
-        if ":" in thestr:
+        if ":" in thestr:   
             thestr = thestr.replace(":",".")
         elif "-" in thestr:
             thestr = thestr.replace("-",".")
         return thestr
-        
+    

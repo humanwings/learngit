@@ -2,7 +2,6 @@ import urllib.request
 import urllib.error
 import http.cookiejar
 import re
-from tool import Tool
 
 from datetime import datetime
 
@@ -34,15 +33,9 @@ try:
     #                     'content">(.*?)<!--(.*?)-->.*?</div>(.*?)<div class="stats.*?class="number">(.*?)</i>',re.S)
     pattern = re.compile('<div class="article block untagged mb15".*?<h2>(.*?)</h2>.*?<span>(.*?)</span>',re.S)
     
-    tool = Tool()
-    
     items = re.findall(pattern,content)
     print("items len: ",len(items))
     
-    for item in items:
-        print(item[0],"\n",tool.replace(item[1]))
-        print("\n")
-
     print("rp.url: " ,rp.geturl(),"\n")
     #print("rp.info: " ,rp.info(),"\n")
     print("rp.code: " ,rp.getcode(),"\n")
@@ -59,3 +52,6 @@ except urllib.error.URLError as e:
 print(datetime.today())
 
 
+data = bytes(urllib.parse.urlencode({'word': 'hello'}), encoding='utf8')
+response = urllib.request.urlopen('http://httpbin.org/post', data=data)
+print(response.read())

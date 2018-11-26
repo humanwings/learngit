@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+
+  </head>
+  <body>
+    <div class="container-fluid">
+      <table class="table table-bordered">
+        <caption>精选基金一览</caption>
+        <thead>
+          <tr>
+            <th>基金代码</th>
+            <th>基金名称</th>
+            <th>投资类型</th>
+            <th>投资风格</th>
+            <th>基金设立日</th>
+            <th>基金经理</th>
+            <th>任职开始日</th>
+            <th>基金规模</th>
+            <th>管理费率</th>
+            <th>托管费率</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for one in list %}
+          <tr>
+            <td>{{one.code}}</td>
+            <td>{{one.name}}</td>
+            <td>{{one.type}}</td>
+            <td>{{one.style}}</td>
+            <td>{{one.start_date}}</td>
+            <td>{{one.manager}}</td>
+            <td>{{one.manager_date}}</td>
+            <td>{{one.scale}}</td>
+            <td>{{one.mng_rate}}</td>
+            <td>{{one.dps_rate}}</td>
+            <td><button type="button" class="btn btn-sm" id="btnDel" value="{{one.code}}" onclick="doDel(this)">删除</button></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <div class="input-group col-lg-3">
+        <input type="text" class="form-control" id="new_fund">
+      </div>
+      <div class="input-group col-lg-3">
+        <button type="button" class="btn btn-default" id="btnAdd">追加</button>
+      </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        
+        $("#btnAdd").click(function(){
+          $.getJSON(  
+              "/fundlist?addmode=1&fundid=" + $("#new_fund").val(),
+              function (data) {
+                if (data["code"] != "000000" ) {
+                  $("tr:last").after("<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>")
+                  $("tr:last td:eq(0)").html(data["code"]);
+                  $("tr:last td:eq(1)").html(data["name"]);
+                  $("tr:last td:eq(2)").html(data["type"]);
+                  $("tr:last td:eq(3)").html(data["style"]);
+                  $("tr:last td:eq(4)").html(data["start_date"]);
+                  $("tr:last td:eq(5)").html(data["manager"]);
+                  $("tr:last td:eq(6)").html(data["manager_date"]);
+                  $("tr:last td:eq(7)").html(data["scale"]);
+                  $("tr:last td:eq(8)").html(data["mng_rate"]);
+                  $("tr:last td:eq(9)").html(data["dps_rate"]);
+                  $("tr:last td:eq(10)").html("<button type='button' class='btn btn-sm' id='btnDel' value='' onclick='doDel(this)'>删除</button>");
+                }else{
+                  alert("无效的基金ID：" + $("#new_fund").val());
+                }
+                $("#new_fund").val("");
+              }  
+            );  
+        });
+
+        
+        $("#btnAdd").dblclick(function(){
+          $("#new_fund").css("color","red").slideUp(2000).slideDown(2000);
+        });
+      
+      });
+
+      function doDel(btn)
+      {
+          $.getJSON(  
+            "/fundlist?delmode=1&fundid=" + btn.value,
+            function (data) {
+              $(btn).parents("tr").remove();
+            }  
+          ); 
+      }
+    </script>
+  </body>
+</html>

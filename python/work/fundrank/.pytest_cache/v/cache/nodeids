@@ -1,0 +1,4 @@
+[
+  "fundrank/tests.py::TestMyViewSuccessCondition::test_passing_view",
+  "fundrank/tests.py::TestMyViewFailureCondition::test_failing_view"
+]

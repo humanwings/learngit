@@ -18,61 +18,61 @@ and they lived at the bottom of a well.</p>
 soup = BeautifulSoup(html_doc, 'html.parser')
 
 
-#def has_class_but_no_id(tag):
-#    return tag.has_attr('class') and not tag.has_attr('id')
-#soup.find_all(has_class_but_no_id)
+def has_class_but_no_id(tag):
+    return tag.has_attr('class') and not tag.has_attr('id')
+soup.find_all(has_class_but_no_id)
 
-#tag = soup.b
-#print(tag.string)
-#for i,element in enumerate(tag.next_elements):
-#    print(i)
-#    print(element.string)
+tag = soup.b
+print(tag.string)
+for i,element in enumerate(tag.next_elements):
+    print(i)
+    print(element.string)
 
-#print(soup.prettify())
+print(soup.prettify())
 
-#print(soup.name)
+print(soup.name)
 
-#tag = soup.a
-#print(tag.name)
-#print(tag.attrs)
-#print(tag['class'])
-#print(tag['href'])
-#print(tag['id'])
+tag = soup.a
+print(tag.name)
+print(tag.attrs)
+print(tag['class'])
+print(tag['href'])
+print(tag['id'])
 
-#del tag['class']
-#print(soup)
+del tag['class']
+print(soup)
 
-#print(tag.string)
-#tag.string.replace_with("wujian")
+print(tag.string)
+tag.string.replace_with("wujian")
 
-#tags = soup.find_all("a")
-#print(len(tags))
-#print(tags[0].string)
+tags = soup.find_all("a")
+print(len(tags))
+print(tags[0].string)
 
-#print(len(soup.body.contents))
-#for item in soup.body.contents :
-#    print(item)
+print(len(soup.body.contents))
+for item in soup.body.contents :
+   print(item)
 
-#for child  in soup.body.children :
-#    print(child )
+for child  in soup.body.children :
+   print(child )
 
-#for child in soup.body.descendants:
-#    print(child)
+for child in soup.body.descendants:
+   print(child)
 
-#for string in soup.stripped_strings :
-#    print("-------------------------------")
-#    print(string)
+for string in soup.stripped_strings :
+   print("-------------------------------")
+   print(string)
 
-#for string in soup.strings :
-#    print("-------------------------------")
-#    print(string)
+for string in soup.strings :
+   print("-------------------------------")
+   print(string)
 
-#tag =  soup.find_all("a")[1]
-#print(tag.string)
-#print(tag.next_sibling.next_sibling.string)
-#print(tag.previous_sibling.previous_sibling.string)
-#print()
-#print(tag.string)
-#print(tag.next_element.next_element.string)
-#print(tag.previous_element.previous_element.string)
+tag =  soup.find_all("a")[1]
+print(tag.string)
+print(tag.next_sibling.next_sibling.string)
+print(tag.previous_sibling.previous_sibling.string)
+print()
+print(tag.string)
+print(tag.next_element.next_element.string)
+print(tag.previous_element.previous_element.string)
 
